@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wang.perpro.service.mapper.DmDataMapper">
+  <resultMap id="BaseResultMap" type="com.wang.perpro.service.data.DmData">
+    <id column="did" jdbcType="INTEGER" property="did" />
+    <result column="groupid" jdbcType="VARCHAR" property="groupid" />
+    <result column="drugid" jdbcType="VARCHAR" property="drugid" />
+    <result column="classifyone" jdbcType="VARCHAR" property="classifyone" />
+    <result column="classifytwo" jdbcType="VARCHAR" property="classifytwo" />
+    <result column="drugcname" jdbcType="VARCHAR" property="drugcname" />
+    <result column="drugename" jdbcType="VARCHAR" property="drugename" />
+    <result column="creatdate" jdbcType="TIMESTAMP" property="creatdate" />
+    <result column="modifydate" jdbcType="TIMESTAMP" property="modifydate" />
+    <result column="describes" jdbcType="VARCHAR" property="describes" />
+    <result column="stock" jdbcType="VARCHAR" property="stock" />
+    <result column="stockunit" jdbcType="VARCHAR" property="stockunit" />
+    <result column="comments" jdbcType="VARCHAR" property="comments" />
+    <result column="cat_no" jdbcType="VARCHAR" property="catNo" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    did, groupid, drugid, classifyone, classifytwo, drugcname, drugename, creatdate, 
+    modifydate, describes, stock, stockunit, comments, cat_no, location
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from dm_data
+    where did = #{did,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectAll"  resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from dm_data
+  </select>
+
+  <insert id="insert" keyColumn="did" keyProperty="did" parameterType="com.wang.perpro.service.data.DmData" useGeneratedKeys="true">
+    insert into dm_data (groupid, drugid, classifyone, 
+      classifytwo, drugcname, drugename, 
+      creatdate, modifydate, describes, 
+      stock, stockunit, comments, 
+      cat_no, location)
+    values (#{groupid,jdbcType=VARCHAR}, #{drugid,jdbcType=VARCHAR}, #{classifyone,jdbcType=VARCHAR}, 
+      #{classifytwo,jdbcType=VARCHAR}, #{drugcname,jdbcType=VARCHAR}, #{drugename,jdbcType=VARCHAR}, 
+      #{creatdate,jdbcType=TIMESTAMP}, #{modifydate,jdbcType=TIMESTAMP}, #{describes,jdbcType=VARCHAR}, 
+      #{stock,jdbcType=VARCHAR}, #{stockunit,jdbcType=VARCHAR}, #{comments,jdbcType=VARCHAR}, 
+      #{catNo,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="did" keyProperty="did" parameterType="com.wang.perpro.service.data.DmData" useGeneratedKeys="true">
+    insert into dm_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="groupid != null">
+        groupid,
+      </if>
+      <if test="drugid != null">
+        drugid,
+      </if>
+      <if test="classifyone != null">
+        classifyone,
+      </if>
+      <if test="classifytwo != null">
+        classifytwo,
+      </if>
+      <if test="drugcname != null">
+        drugcname,
+      </if>
+      <if test="drugename != null">
+        drugename,
+      </if>
+      <if test="creatdate != null">
+        creatdate,
+      </if>
+      <if test="modifydate != null">
+        modifydate,
+      </if>
+      <if test="describes != null">
+        describes,
+      </if>
+      <if test="stock != null">
+        stock,
+      </if>
+      <if test="stockunit != null">
+        stockunit,
+      </if>
+      <if test="comments != null">
+        comments,
+      </if>
+      <if test="catNo != null">
+        cat_no,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="groupid != null">
+        #{groupid,jdbcType=VARCHAR},
+      </if>
+      <if test="drugid != null">
+        #{drugid,jdbcType=VARCHAR},
+      </if>
+      <if test="classifyone != null">
+        #{classifyone,jdbcType=VARCHAR},
+      </if>
+      <if test="classifytwo != null">
+        #{classifytwo,jdbcType=VARCHAR},
+      </if>
+      <if test="drugcname != null">
+        #{drugcname,jdbcType=VARCHAR},
+      </if>
+      <if test="drugename != null">
+        #{drugename,jdbcType=VARCHAR},
+      </if>
+      <if test="creatdate != null">
+        #{creatdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifydate != null">
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="describes != null">
+        #{describes,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null">
+        #{stock,jdbcType=VARCHAR},
+      </if>
+      <if test="stockunit != null">
+        #{stockunit,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null">
+        #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="catNo != null">
+        #{catNo,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wang.perpro.service.data.DmData">
+    update dm_data
+    <set>
+      <if test="groupid != null">
+        groupid = #{groupid,jdbcType=VARCHAR},
+      </if>
+      <if test="drugid != null">
+        drugid = #{drugid,jdbcType=VARCHAR},
+      </if>
+      <if test="classifyone != null">
+        classifyone = #{classifyone,jdbcType=VARCHAR},
+      </if>
+      <if test="classifytwo != null">
+        classifytwo = #{classifytwo,jdbcType=VARCHAR},
+      </if>
+      <if test="drugcname != null">
+        drugcname = #{drugcname,jdbcType=VARCHAR},
+      </if>
+      <if test="drugename != null">
+        drugename = #{drugename,jdbcType=VARCHAR},
+      </if>
+      <if test="creatdate != null">
+        creatdate = #{creatdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifydate != null">
+        modifydate = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="describes != null">
+        describes = #{describes,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null">
+        stock = #{stock,jdbcType=VARCHAR},
+      </if>
+      <if test="stockunit != null">
+        stockunit = #{stockunit,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null">
+        comments = #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="catNo != null">
+        cat_no = #{catNo,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where did = #{did,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.wang.perpro.service.data.DmData">
+    update dm_data
+    set groupid = #{groupid,jdbcType=VARCHAR},
+      drugid = #{drugid,jdbcType=VARCHAR},
+      classifyone = #{classifyone,jdbcType=VARCHAR},
+      classifytwo = #{classifytwo,jdbcType=VARCHAR},
+      drugcname = #{drugcname,jdbcType=VARCHAR},
+      drugename = #{drugename,jdbcType=VARCHAR},
+      creatdate = #{creatdate,jdbcType=TIMESTAMP},
+      modifydate = #{modifydate,jdbcType=TIMESTAMP},
+      describes = #{describes,jdbcType=VARCHAR},
+      stock = #{stock,jdbcType=VARCHAR},
+      stockunit = #{stockunit,jdbcType=VARCHAR},
+      comments = #{comments,jdbcType=VARCHAR},
+      cat_no = #{catNo,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR}
+    where did = #{did,jdbcType=INTEGER}
+  </update>
+</mapper>
