@@ -16,6 +16,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ControllerAdvice
 @ResponseBody
 public class ExcetionHandler {
+
+  /**
+   * 自定义异常处理
+   * @param e
+   * @return
+   */
   @ExceptionHandler({ApiException.class})
   public ApiResponse handleApiException(ApiException e) {
 
@@ -23,6 +29,11 @@ public class ExcetionHandler {
     return ApiResponse.error(e);
   }
 
+  /**
+   * 默认系统异常处理
+   * @param e
+   * @return
+   */
   @ExceptionHandler(Exception.class)
   public ApiResponse handleException(Exception e) {
 
